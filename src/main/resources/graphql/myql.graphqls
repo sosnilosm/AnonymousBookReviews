@@ -1,0 +1,31 @@
+type Book {
+    id: ID!,
+    title: String!,
+    author: String!,
+    pdate: String!,
+    amount: Int!,
+    reviews(count: Int!): [Review]
+}
+type Review {
+    id: ID!,
+    bookId: Int!,
+    content: String!,
+    pdate: String
+}
+
+type Query {
+    getAllBooks: [Book!],
+    getBookById(id: ID!): Book,
+
+    getAllReviews: [Review!],
+    getReviewById(id: ID!): Review,
+}
+type Mutation {
+    createBook(title: String!, author: String!, pdate: String!, amount: Int!): Book,
+    updateBook(id: ID!, title: String!, author: String!, pdate: String!, amount: Int!): Book,
+    deleteBook(id: ID): Book,
+
+    createReview(bookId: Int!, content: String!): Review,
+    updateReview(id: ID!, bookId: Int!, content: String!): Review,
+    deleteReview(id: ID): Review,
+}
